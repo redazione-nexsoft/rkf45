@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Reference Include="Microsoft.Research.Oslo">
-      <HintPath>..\..\..\..\Users\DMD\Downloads\OpenSolvingLibraryforODEs1.1\Oslo\bin\Debug\Microsoft.Research.Oslo.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\OpenSolvingLibraryforODEs1.1\Oslo\bin\Debug\Microsoft.Research.Oslo.dll</HintPath>
     </Reference>
   </ItemGroup>
 

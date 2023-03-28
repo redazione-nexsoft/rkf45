@@ -38,14 +38,14 @@
             {
                 //10       CONTINUE
                 double R, D;
-                double K1 = 0, K2 = 0, K3 = 0, K4 = 0, K5 = 0, K6 = 0;
+                double[] K = null;
                 R = tolMin;
                 while (R >= tolMin)
                 {
-                    COMPUTEK(f, lastPoint, H, out K1, out K2, out K3, out K4, out K5, out K6);
+                    K = COMPUTEK(f, lastPoint, H);
 
                     //CALCOLO DELL'ERRORE LOCALE DI TRONCAMENTO            
-                    R = Math.Abs(YK1(lastPoint.Y, K1, K3, K4, K5) - ZK1(lastPoint.Y, K1, K3, K4, K5, K6));
+                    R = Math.Abs(YK1(lastPoint.Y, K) - ZK1(lastPoint.Y, K));
 
                     //LA DISTANZA H DEVE ESSERE MODIFICATA SE R E' MAGGIORE DELLA TOLLERANZA
                     if (R >= tolMin)
@@ -87,7 +87,7 @@
                     var newPoint = new PointD
                     {
                         X = lastPoint.X + H,
-                        Y = YK1(lastPoint.Y, K1, K3, K4, K5)
+                        Y = YK1(lastPoint.Y, K)  
                     };
                     ret.Add(newPoint);
                     lastPoint = newPoint;
@@ -97,7 +97,7 @@
                     var newPoint = new PointD
                     {
                         X = b,
-                        Y = YK1(lastPoint.Y, K1, K3, K4, K5)
+                        Y = YK1(lastPoint.Y, K)  
                     };
                     ret.Add(newPoint);
                     lastPoint = newPoint;
@@ -124,29 +124,29 @@
             return Double.Epsilon;
         }
 
-        private void COMPUTEK(Func<double, double, double> F, PointD lastPoint, double H, out double K1, out double K2, out double K3, out double K4, out double K5, out double K6)
+        private double[] COMPUTEK(Func<double, double, double> F, PointD lastPoint, double H)  
         {
-            //CALCOLO COEFFICIENTI
             double X = lastPoint.X;
             double Y = lastPoint.Y;
-            K1 = H * F(X, Y);
-            K2 = H * F(X + H / 4, Y + K1 / 4);
-            K3 = H * F(X + 3 * H / 8, Y + 3 * K1 / 32 + 9 * K2 / 32);
-            K4 = H * F(X + 12 * H / 13, Y + (1932 * K1 - 7200 * K2 + 7296 * K3) / 2197);
-            K5 = H * F(X + H, Y + 439 * K1 / 216 - 8 * K2 + 3680 * K3 / 513 - 845 * K4 / 4104);
-            K6 = H * F(X + H / 2, Y - 8 * K1 / 27 + 2 * K2 - 3544 * K3 / 2565 + 1859 * K4 / 4104 - 11 * K5 / 40);
+            double K1 = H * F(X, Y);
+            double K2 = H * F(X + H / 4, Y + K1 / 4);
+            double K3 = H * F(X + 3 * H / 8, Y + 3 * K1 / 32 + 9 * K2 / 32);
+            double K4 = H * F(X + 12 * H / 13, Y + (1932 * K1 - 7200 * K2 + 7296 * K3) / 2197);
+            double K5 = H * F(X + H, Y + 439 * K1 / 216 - 8 * K2 + 3680 * K3 / 513 - 845 * K4 / 4104);
+            double K6 = H * F(X + H / 2, Y - 8 * K1 / 27 + 2 * K2 - 3544 * K3 / 2565 + 1859 * K4 / 4104 - 11 * K5 / 40);
+            return new[] { K1, K2, K3, K4, K5, K6 }; 
         }
 
         // QUESTA FUNCTION CALCOLA LE ORDINATE DEI PUNTI APPROSSIMANTI C LA CURVA SOLUZIONE DELL' ODE ,ADOPERANDO IL METODO RK4
-        private double YK1(double Y, double K1, double K3, double K4, double K5)
+        private double YK1(double Y, double[] K)  
         {
-            return Y + (25 * K1 / 216 + 1408 * K3 / 2565 + 2197 * K4 / 4104 - K5 / 5);
+            return Y + (25 * K[0] / 216 + 1408 * K[2] / 2565 + 2197 * K[3] / 4104 - K[4] / 5);
         }
 
         // QUESTA FUNCTION CALCOLA LE ORDINATE DEI PUNTI APPROSSIMANTI C LA CURVA SOLUZIONE DELLA ODE, ADOPERANDO IL METODO RK5
-        private double ZK1(double Y, double K1, double K3, double K4, double K5, double K6)
+        private double ZK1(double Y, double[] K)  
         {
-            return Y + (16 * K1 / 135 + 6656 * K3 / 12825 + 28561 * K4 / 56430 - 9 * K5 / 50 + 2 * K6 / 55);
+            return Y + (16 * K[0] / 135 + 6656 * K[2] / 12825 + 28561 * K[3] / 56430 - 9 * K[4] / 50 + 2 * K[5] / 55);
         }
     }
 }

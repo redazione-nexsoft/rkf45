@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/RungeKutta/bin/Debug/net6.0
+/src/RungeKutta/obj
+/src/RungeKutta.UnitTests/bin
+/src/RungeKutta.UnitTests/obj
+/.vs

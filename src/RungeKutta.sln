@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RungeKutta", "RungeKutta\RungeKutta.csproj", "{C158ABD5-F05B-4B4A-986A-3C646E1FD0E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RungeKutta.UnitTests", "RungeKutta.UnitTests\RungeKutta.UnitTests.csproj", "{850F9DC1-D351-4286-B68F-2B0C0295AFF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C158ABD5-F05B-4B4A-986A-3C646E1FD0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C158ABD5-F05B-4B4A-986A-3C646E1FD0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C158ABD5-F05B-4B4A-986A-3C646E1FD0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C158ABD5-F05B-4B4A-986A-3C646E1FD0E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850F9DC1-D351-4286-B68F-2B0C0295AFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850F9DC1-D351-4286-B68F-2B0C0295AFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850F9DC1-D351-4286-B68F-2B0C0295AFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850F9DC1-D351-4286-B68F-2B0C0295AFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D63E099-14A2-49B5-8F4B-DC38CD3D045E}
+	EndGlobalSection
+EndGlobal
